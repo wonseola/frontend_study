@@ -1,6 +1,13 @@
 const canvas = document.querySelector("canvas");
 
+
+const file = document.getElementById("file");
+const textInput = document.getElementById("text");
+
 const modeBtn = document.getElementById("mode-btn");
+const destroyBtn = document.getElementById("destroy-btn");
+const eraserBtn = document.getElementById("eraser-btn");
+
 const colorOptions = Array.from(document.getElementsByClassName("color-option"));
 const c = canvas.getContext("2d")
 const lineWidth = document.getElementById("lineWidth");
@@ -8,12 +15,9 @@ const color = document.getElementById("color");
 canvas.width=500;
 canvas.height=500;
 c.lineWidth = lineWidth.value;
+c.lineCap="round";
 let isPainting = false;
 let isFilling = false;
-
-
-
-
 
 
 function onMove(event){
@@ -68,6 +72,47 @@ function onCanvasClick(){
     }
 }
 
+function onDestroyClick(){
+    c.fillStyle="white";
+    c.fillRect(0, 0, canvas.width, canvas.height);
+
+}
+
+function onEraserClick(){
+    c.strokeStyle="white";
+    isFilling = flase;
+    modeBtn.innerText = "Draw";
+
+}
+
+function onFileChange(event){
+    const file = event.target.files[0];
+    const url = URL.createObjectURL(file);
+    // console.log(url);
+    const image = new Image();
+    image.src = url;
+    image.onload = function(){
+        c.drawImage(image, 0, 0, canvas.width, canvas.height);
+        file.value = null;
+    }
+}
+
+
+function onDoubleClick(event){
+    const text = textInput.value;
+    if(text !== ""){
+        c.save();
+        c.lineWidth = 0.5;
+        c.font="30px serif"
+        c.fillText(text,event.offsetX, event.offsetY);
+        c.restore();
+    }
+    
+    // console.log(event.offsetX, event.offsetY);
+}
+
+
+canvas.addEventListener("dblclick", onDoubleClick);
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", onMouseDown);
 canvas.addEventListener("mouseup", onMouseUp);
@@ -79,6 +124,10 @@ canvas.addEventListener("click", onCanvasClick);
 colorOptions.forEach(color => color.addEventListener("click", onColorClick));
 
 modeBtn.addEventListener("click", onModeClick);
+destroyBtn.addEventListener("click", onDestroyClick);
+eraserBtn.addEventListener("click", onEraserClick);
+file.addEventListener("change", onFileChange);
+
 
 // const colors = [
 //     "#ffb6ad", 
