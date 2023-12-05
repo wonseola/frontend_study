@@ -3,6 +3,7 @@ const canvas = document.querySelector("canvas");
 
 const file = document.getElementById("file");
 const textInput = document.getElementById("text");
+const savebtn = document.getElementById("save");
 
 const modeBtn = document.getElementById("mode-btn");
 const destroyBtn = document.getElementById("destroy-btn");
@@ -12,8 +13,8 @@ const colorOptions = Array.from(document.getElementsByClassName("color-option"))
 const c = canvas.getContext("2d")
 const lineWidth = document.getElementById("lineWidth");
 const color = document.getElementById("color");
-canvas.width=500;
-canvas.height=500;
+canvas.width=800;
+canvas.height=800;
 c.lineWidth = lineWidth.value;
 c.lineCap="round";
 let isPainting = false;
@@ -111,6 +112,14 @@ function onDoubleClick(event){
     // console.log(event.offsetX, event.offsetY);
 }
 
+function onSaveClick(){
+    const url = canvas.toDataURL();
+    const a = document.createElement("a");
+    a.href = url;
+    a.download ="myDrawing.png";
+    a.click();
+}
+
 
 canvas.addEventListener("dblclick", onDoubleClick);
 canvas.addEventListener("mousemove", onMove);
@@ -127,57 +136,5 @@ modeBtn.addEventListener("click", onModeClick);
 destroyBtn.addEventListener("click", onDestroyClick);
 eraserBtn.addEventListener("click", onEraserClick);
 file.addEventListener("change", onFileChange);
+save.addEventListener("click", onSaveClick);
 
-
-// const colors = [
-//     "#ffb6ad", 
-//     "#ffd9ad",
-//     "#faffad",
-//     "#c8ffad",
-//     "#adffdb",
-//     "#add7ff",
-//     "#b9adff",
-//     "#feadff",
-// ]
-
-// let offsetX, offsetY = 0;
-
-// c.moveTo(0, 0);
-// function onClick(event){
-//     c.beginPath();
-//     c.moveTo(offsetX, offsetY);
-//     const color = colors[Math.floor(Math.random() * colors.length)];
-//     c.strokeStyle = color;
-//     c.lineTo(event.offsetX, event.offsetY);
-//     c.stroke();
-// }
-
-// function onMouse(event){
-//     c.beginPath();
-//     // c.fillStyle = "white"
-//     // c.fillRect(0, 0, canvas.width, canvas.height)
-//     // c.beginPath();
-//     offsetX = event.offsetX;
-//     offsetY = event.offsetY
-// }
-
-// canvas.addEventListener("mousemove", onClick);
-// canvas.addEventListener("click",onMouse)
-
-
-
-
-
-// c.fillRect(210 - 40, 200 - 30, 15, 100);
-// c.fillRect(350 - 40, 200 - 30, 15, 100);
-// c.fillRect(260 - 40, 200 - 30, 60, 200);
-
-// c.arc(250, 100, 50, 0, 2 * Math.PI);
-// c.fill()
-
-// c.beginPath();
-// c.fillStyle="tan"
-// c.arc(260 + 10, 80, 8, Math.PI, 2 * Math.PI);
-// c.arc(220 + 10, 80, 8, Math.PI, 2 * Math.PI);
-
-// c.fill();
