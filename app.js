@@ -75,7 +75,7 @@ function onCanvasClick(){
 
 function onDestroyClick(){
     c.fillStyle="white";
-    c.fillRect(0, 0, canvas.width, canvas.height);
+    c.clearRect(0, 0, canvas.width, canvas.height);
 
 }
 
