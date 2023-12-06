@@ -1,12 +1,9 @@
 @import "reset.css";
 
-
-
-
 body{
     display: flex;
     gap: 20px;
-    justify-content: space;
+    justify-content: space-around;
     align-items: flex-start;
     background-color: gainsboro;
     padding:20px;
@@ -31,15 +28,33 @@ canvas{
 
 .btns{
     display: flex;
-    flex-direction: column;
-    gap:5px
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    gap:5px;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
 }
+.btns label{
+    flex-basis: calc(50% - 2.5px);
+    width: 50px;
+    
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 
 .color-options{
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    padding: 20px;
 }
 
 .color-option:hover{
@@ -52,13 +67,15 @@ button, label{
     text-align: center;
     background-color: rgb(117, 137, 172);
     color:white;
-    font-weight: 500;
+    font-weight: 200;
     padding:10px 0;
     cursor: pointer;
     border-radius: 10px;
     transition: opacity linear .2s;
+    width: 50px;
+    margin: 10px;
 }
-button:hover{
+label:hover{
     opacity: 0.85;
 }
 
@@ -74,3 +91,27 @@ input#text{
     font-weight: 500;
     background-color: white;
 }
+
+.btns label.active {
+    background-color: rgba(224, 146, 146, 0.374); 
+    color: rgb(30, 134, 155); 
+}
+
+.btns {
+    position: relative;
+  }
+  
+  .btns i {
+    visibility: visible;
+  }
+  
+  #draw-btn:hover i {
+    visibility: hidden;
+  }
+  
+  #draw-btn:hover::after {
+    content: "pen";
+    position: relative;
+
+  }
+  

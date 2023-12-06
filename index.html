@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<div class="container">
     <div class="color-options">
         <input type = "color" id ="color" />
         <div class ="color-option" style="background-color:#ffb6ad" data-color="#ffb6ad"></div>
@@ -21,24 +21,32 @@
     </div>
 
 
-    <canvas></canvas>
-
+<div>
     <div class="btns">
-        <input id ="lineWidth" type = "range" min="1" max="10" value="2" step="0.1"/>
-        <button id="mode-btn">Fill</button>
-        <button id="destroy-btn">Destroy</button>
-        <button id="eraser-btn">Eraser</button>
-        <label for = "file">
-            Add Background Image
-            <input type="file" accept="image/*" id="file" />
+        <span id="brushSize">Brush Size 2</span>
+        <input id ="lineWidth" type = "range" min="1" max="60" value="2" step="0.1"/>
+        <label id="draw-btn"><i class="fas fa-thin fa-pen"></i></i></label>
+        <label id="mode-btn"><i class="fas fa-duotone fa-fill-drip"></i></label>
+        <label id="eraser-btn"><i class="fas fa-duotone fa-eraser"></i></label>
 
-        </label>
+        <label id="destroy-btn"><i class="fas fa-duotone fa-trash"></i></label>
+        
 
         <input type="text" placeholder="텍스트 입력 후 캔버스 더블클릭" id = "text"/>
-        <button id="save">Save Image</button>
+        <span id="fontsize">Font Size</span>
+        <input id="textsize" type="range" min="1", max="100", value="30" />
+        <label for = "file">
+            <i class="fas fa-duotone fa-file-image"></i>
+            <input type="file" accept="image/*" id="file" />
+        </label>
+        <label id="save"><i class="fas fa-duotone fa-download"></i></label>
+    
     </div>
-
+</div>
+    <canvas></canvas>
+</div>
 
     <script src="app.js"></script>
+    <script src="https://kit.fontawesome.com/def66b134a.js" crossorigin="anonymous"></script>
 </body>
 </html>

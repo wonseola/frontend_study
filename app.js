@@ -1,24 +1,44 @@
 const canvas = document.querySelector("canvas");
-
+const c = canvas.getContext("2d")
 
 const file = document.getElementById("file");
 const textInput = document.getElementById("text");
 const savebtn = document.getElementById("save");
 
 const modeBtn = document.getElementById("mode-btn");
+const drawBtn = document.getElementById("draw-btn");
+
 const destroyBtn = document.getElementById("destroy-btn");
 const eraserBtn = document.getElementById("eraser-btn");
 
 const colorOptions = Array.from(document.getElementsByClassName("color-option"));
-const c = canvas.getContext("2d")
 const lineWidth = document.getElementById("lineWidth");
+const brushSize = document.getElementById("brushSize");
+const fontSize = document.getElementById("fontsize");
+const textSize = document.getElementById("textsize");
 const color = document.getElementById("color");
+
+
+
+
 canvas.width=800;
 canvas.height=800;
 c.lineWidth = lineWidth.value;
 c.lineCap="round";
 let isPainting = false;
 let isFilling = false;
+
+
+
+const buttons = document.querySelectorAll(".btns label");
+buttons.forEach(label => {
+    label.addEventListener("click", function() {
+        buttons.forEach(label => {
+            label.classList.remove("active");
+        });
+        this.classList.add("active");
+    });
+});
 
 
 function onMove(event){
@@ -37,9 +57,9 @@ function onMouseDown(){
 function onMouseUp(){
     isPainting = false;
 }
-
 function onLineWidthChange(event){  
     c.lineWidth = event.target.value;
+    brushSize.innerHTML = "Brush Size " + event.target.value;
 }
 function onColorChange(event){
     c.strokeStyle = event.target.value;
@@ -53,36 +73,40 @@ function onColorClick(event){
     c.strokeStyle = colorValue;
     c.fillStyle = colorValue;
     color.value = colorValue
+    
+
 }
 
 function onModeClick(){
     if(isFilling){
         isFilling = false;
-        modeBtn.innerText = "Fill";
     }else{
         isFilling = true;
-        modeBtn.innerText = "Draw";
-
     }
+}
+
+function DrawAgain(){
+    isFilling = false;
 }
 
 function onCanvasClick(){
     if(isFilling){
         c.fillRect(0, 0, canvas.width, canvas.height);
-
     }
 }
 
 function onDestroyClick(){
-    c.fillStyle="white";
-    c.clearRect(0, 0, canvas.width, canvas.height);
-
+    if(window.confirm("그림이 모두 사라집니다. 정말 지우실건가요?!😎")){
+        c.clearRect(0, 0, canvas.width, canvas.height);
+        history.go(0);
+    } else{
+        return;
+    }
+    
 }
 
 function onEraserClick(){
-    c.strokeStyle="white";
-    isFilling = flase;
-    modeBtn.innerText = "Draw";
+    c.globalCompositeOperation = 'destination-out'
 
 }
 
@@ -101,10 +125,11 @@ function onFileChange(event){
 
 function onDoubleClick(event){
     const text = textInput.value;
+    const size = textSize.value;
     if(text !== ""){
         c.save();
-        c.lineWidth = 0.5;
-        c.font="30px serif"
+        // c.lineWidth = 0.5;
+        c.font=size +"px Arial";
         c.fillText(text,event.offsetX, event.offsetY);
         c.restore();
     }
@@ -118,7 +143,12 @@ function onSaveClick(){
     a.href = url;
     a.download ="myDrawing.png";
     a.click();
+    
 }
+
+
+
+
 
 
 canvas.addEventListener("dblclick", onDoubleClick);
@@ -133,8 +163,12 @@ canvas.addEventListener("click", onCanvasClick);
 colorOptions.forEach(color => color.addEventListener("click", onColorClick));
 
 modeBtn.addEventListener("click", onModeClick);
+drawBtn.addEventListener("click", DrawAgain);
+
 destroyBtn.addEventListener("click", onDestroyClick);
 eraserBtn.addEventListener("click", onEraserClick);
 file.addEventListener("change", onFileChange);
+
 save.addEventListener("click", onSaveClick);
+
 
