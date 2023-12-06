@@ -110,8 +110,46 @@ input#text{
   }
   
   #draw-btn:hover::after {
-    content: "pen";
-    position: relative;
-
+    content: "PEN";
+    position:inherit;
   }
   
+  #mode-btn:hover i {
+    visibility: hidden;
+  }
+  
+  #mode-btn:hover::after {
+    content: "FILL";
+    position:inherit;
+  }
+
+  #eraser-btn:hover i {
+    visibility: hidden;
+  }
+  
+  #eraser-btn:hover::after {
+    content: "ERASER";
+    position:inherit;
+  }
+  #destroy-btn:hover i {
+    visibility: hidden;
+  }
+  
+  #destroy-btn:hover::after {
+    content: "CLEAR ALL";
+    position:inherit;
+  }
+  #file-btn:hover i {
+    visibility: hidden;
+  }
+  #file-btn:hover::after {
+    content: "IMAGE";
+    position:inherit;
+  }  
+  #save:hover i {
+    visibility: hidden;
+  }
+  #save:hover::after {
+    content: "SAVE";
+    position:inherit;
+  }
