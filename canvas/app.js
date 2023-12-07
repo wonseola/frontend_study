@@ -15,7 +15,7 @@ const colorOptions = Array.from(document.getElementsByClassName("color-option"))
 const lineWidth = document.getElementById("lineWidth");
 const brushSize = document.getElementById("brushSize");
 const colorview = document.getElementById("colorview");
-const fontSize = document.getElementById("fontsize");
+const fontsize = document.getElementById("fontsize");
 const textSize = document.getElementById("textsize");
 const color = document.getElementById("color");
 
@@ -104,8 +104,12 @@ function onLineWidthChange(event){
 function onColorChange(event){
     c.strokeStyle = event.target.value;
     c.fillStyle = event.target.value;
-
+    colorview.innerHTML = "color " + event.target.value+ `<style>#colorview { background-color: ${event.target.value}; }</style>`;
 }
+function onTextsizeChange(event){
+    fontsize.innerHTML = "Font Size " + event.target.value;
+}
+
 
 function onColorClick(event){
     const colorValue = event.target.dataset.color
@@ -114,6 +118,7 @@ function onColorClick(event){
     c.fillStyle = colorValue;
     color.value = colorValue;
     colorview.innerHTML = "color " + colorValue+ `<style>#colorview { background-color: ${colorValue}; }</style>`;
+
 }
 
 function onModeClick(){
@@ -207,6 +212,7 @@ canvas.addEventListener("mouseup", onMouseUp);
 canvas.addEventListener("mouseleave", onMouseUp)
 
 lineWidth.addEventListener("change", onLineWidthChange);
+textSize.addEventListener("change", onTextsizeChange);
 color.addEventListener("change", onColorChange);
 canvas.addEventListener("click", onCanvasClick);
 colorOptions.forEach(color => color.addEventListener("click", onColorClick));
