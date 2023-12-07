@@ -14,6 +14,7 @@ const eraserBtn = document.getElementById("eraser-btn");
 const colorOptions = Array.from(document.getElementsByClassName("color-option"));
 const lineWidth = document.getElementById("lineWidth");
 const brushSize = document.getElementById("brushSize");
+const colorview = document.getElementById("colorview");
 const fontSize = document.getElementById("fontsize");
 const textSize = document.getElementById("textsize");
 const color = document.getElementById("color");
@@ -111,9 +112,8 @@ function onColorClick(event){
     // console.dir(event.target.dataset.color);
     c.strokeStyle = colorValue;
     c.fillStyle = colorValue;
-    color.value = colorValue
-    
-
+    color.value = colorValue;
+    colorview.innerHTML = "color " + colorValue+ `<style>#colorview { background-color: ${colorValue}; }</style>`;
 }
 
 function onModeClick(){
