@@ -32,6 +32,43 @@ let eraserClick = false;
 
 
 const buttons = document.querySelectorAll(".btns label");
+
+
+const canvasHistory = [];
+let historyIndex = -1;
+
+function saveCanvasState() {
+    const imageData = c.getImageData(0, 0, canvas.width, canvas.height);
+    canvasHistory.push(imageData);
+    historyIndex++;
+}
+
+function undo() {
+    if (historyIndex > 0) {
+        historyIndex--; 
+        const imageData = canvasHistory[historyIndex];
+        c.putImageData(imageData, 0, 0); 
+    }
+}
+
+function redo() {
+    if (historyIndex < canvasHistory.length - 1) {
+        historyIndex++; 
+        const imageData = canvasHistory[historyIndex];
+        c.putImageData(imageData, 0, 0);
+    }
+}
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "z") {
+        event.preventDefault();
+        console.log("z누름")
+        undo();
+    }
+});
+
+
+
 buttons.forEach(label => {
     label.addEventListener("click", function() {
         buttons.forEach(label => {
@@ -54,6 +91,7 @@ function onMove(event){
 }
 function onMouseDown(){
     isPainting = true;
+    saveCanvasState();
 }
 function onMouseUp(){
     isPainting = false;

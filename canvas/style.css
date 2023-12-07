@@ -119,7 +119,7 @@ input#text{
   }
   
   #mode-btn:hover::after {
-    content: "FILL";
+    content: "BG COLOR";
     position:inherit;
   }
 
