@@ -27,6 +27,7 @@ c.lineWidth = lineWidth.value;
 c.lineCap="round";
 let isPainting = false;
 let isFilling = false;
+let eraserClick = false;
 
 
 
@@ -83,17 +84,30 @@ function onModeClick(){
     }else{
         isFilling = true;
     }
+
 }
 
 function DrawAgain(){
     isFilling = false;
 }
 
+function onEraserClick(){
+    isFilling = false;
+    const backgroundColor = getComputedStyle(canvas).backgroundColor; // 현재 캔버스의 배경색을 가져옵니다.
+    c.strokeStyle = backgroundColor;
+}
+
 function onCanvasClick(){
     if(isFilling){
-        c.fillRect(0, 0, canvas.width, canvas.height);
+        // c.fillRect(0, 0, canvas.width, canvas.height);
+        canvas.style.backgroundColor = c.strokeStyle;
+    } else if(eraserClick){
+        c.globalCompositeOperation = 'destination-out';
+    } else {
+        c.globalCompositeOperation = 'source-over';
     }
 }
+
 
 function onDestroyClick(){
     if(window.confirm("그림이 모두 사라집니다. 정말 지우실건가요?!😎")){
@@ -105,10 +119,6 @@ function onDestroyClick(){
     
 }
 
-function onEraserClick(){
-    c.globalCompositeOperation = 'destination-out'
-
-}
 
 function onFileChange(event){
     const file = event.target.files[0];
@@ -143,7 +153,7 @@ function onSaveClick(){
     a.href = url;
     a.download ="myDrawing.png";
     a.click();
-    
+
 }
 
 
