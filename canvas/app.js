@@ -127,6 +127,7 @@ function onModeClick(){
 
 function DrawAgain(){
     isFilling = false;
+    c.strokeStyle="black";
 }
 
 function onEraserClick(){
