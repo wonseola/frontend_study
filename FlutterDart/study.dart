@@ -98,8 +98,7 @@ void main() {
 
   List<bool> x = [true];
   var y = false;
-  print(x);
-  print(y);
+
 
 
 }
