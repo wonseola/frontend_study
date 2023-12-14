@@ -1,7 +1,19 @@
-class Player {
+
+
+
+abstract class Human{
+  void walk();
+}
+
+
+enum Team {red, blue}
+enum XPLevel{beginner, medium, pro}
+
+
+class Player extends Human{
   final String name;
-  int xp;
-  String team;
+  XPLevel xp;
+  Team team;
 
   // Player.fromJson(Map<String, dynamic> playerJson)
   //     : name = playerJson['name'],
@@ -14,10 +26,21 @@ class Player {
     required this.team,
   });
 
+  void walk(){
+    print('im walk');
+  }
+
   void sayHello() {
     print("name : $name");
   }
 }
+
+class Coach extends Human{
+  void walk(){
+    print('coach walk');
+  }
+}
+
 
 void main() {
   // var apiData = [
@@ -43,12 +66,12 @@ void main() {
   //   player.sayHello();
   //  });
 
-  var bom = Player(name: 'bom', xp: 1000, team: 'blue')
-    ..xp = 100000000
-    ..team = 'red';
+  var bom = Player(name: 'bom', xp: XPLevel.beginner, team: Team.blue)
+    ..xp = XPLevel.pro
+    ..team = Team.red;
 
     // bom.xp = 10000;
     //bom.team = 'red';
 
-    
+
 }
