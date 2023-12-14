@@ -1,3 +1,17 @@
+void sayhello(String name) {
+  print("$name nice to meet you");
+}
+
+String sayhello2(String name1) => "Hello $name1";
+
+num plus(num a, num b) => a + b;
+
+String sayhello3(
+    {required String name, required int age, required String country}) {
+// String sayhello3({String name = 'name', int age = 2, String country = 'wakanda}){
+  return "Hello $name , you are $age and you from $country";
+}
+
 void main() {
   var vvar = 1;
   String string = "asdf"; // 명시적으로 설정한 타입(String)으로만 업데이트 가능
@@ -66,28 +80,35 @@ void main() {
   ];
   print(newFriends);
 
-  var player = { // value = object (typescript = any) define i wast
-    'name' : 'one',
-    'xp' : 10.99,
-    'superpower' : false,
-};
+  var player = {
+    // value = object (typescript = any) define i wast
+    'name': 'one',
+    'xp': 10.99,
+    'superpower': false,
+  };
 
-
-  Map<int, bool> player2 = { // key, value type
-    1 : true,
-    2 : false,
-    3 : true,
+  Map<int, bool> player2 = {
+    // key, value type
+    1: true,
+    2: false,
+    3: true,
   };
 
   Map<List<int>, bool> player3 = {
-    [1, 2, 3, 4, 5, ] : true,
+    [
+      1,
+      2,
+      3,
+      4,
+      5,
+    ]: true,
   };
 
   // Correction.
   // Dart Set -> JS Set , python tuple
   // Dart List -> JS Array , python List
 
-  // var num1 = {1, 2, 3, 4, 5}; 
+  // var num1 = {1, 2, 3, 4, 5};
   Set<int> numbers1 = {1, 2, 3, 4, 5}; //unique!!!!! ㅇㅋㅇㅋ 튜플
   // List<int> numbers1 = [1, 2, 3, 4, 5, ];
   numbers1.add(1);
@@ -99,6 +120,13 @@ void main() {
   List<bool> x = [true];
   var y = false;
 
-
-
+  sayhello("potato");
+  print(sayhello2('potato2'));
+  print(plus(1, 2));
+  // print(sayhello3('potato3', 22, 'korea'));
+  print(sayhello3(
+    age: 12,
+    country: 'cuba',
+    name: 'potato33',
+  ));
 }
