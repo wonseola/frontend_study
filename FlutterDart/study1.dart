@@ -24,6 +24,13 @@ ListOfInts reverseList(List<int> list){
 }
 
 
+// typedef UserInfo = Map<String, String>;
+String sayHi(Map<String, String> userInfo){
+  return "Hi ${userInfo['name']}" ;
+}
+
+
+
 void main() {
 
   var result = sayhello(
