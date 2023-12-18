@@ -6,6 +6,6 @@
 ( canvas javascript ) 그림판 
 
 [🩵](https://github.com/wonseola/frontend_study/tree/main/toonflix)
-( react dart ) 웹툰 앱
+( flutter dart ) 웹툰 앱
 
 </div>
