@@ -5,7 +5,5 @@
 [💙](https://github.com/wonseola/frontend_study/tree/main/canvas)
 ( canvas javascript ) 그림판 
 
-[🩵](https://github.com/wonseola/frontend_study/tree/main/toonflix)
-( flutter dart ) 웹툰 앱
 
 </div>
